@@ -1,0 +1,69 @@
+% !TEX encoding = IsoLatin
+
+\documentclass[12pt,ULlof,ULlot]{ULrapport}
+
+% Chargement des packages supplementaires (si absent de la classe)
+\usepackage[ansinew]{inputenc}
+\usepackage[autolanguage]{numprint}
+\usepackage{icomma}
+\usepackage{hyperref}
+\usepackage{placeins}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{longtable}
+%\usepackage{amsmath}
+%\usepackage[options]{nom_du_package}
+
+% Definition d'une commande pour presenter des cellules multilignes dans un tableau
+\newcommand{\cellulemultiligne}[1]{\begin{tabular}{@{}c@{}}#1\end{tabular}}
+
+% Definition de colonnes en mode paragraphe avec alignement ajustable
+% Cette definition requiert le chargement du package "array"
+%    - alignement horizontal, parametre #1 : - \raggedright (aligne a gauche)
+%                                            - \centering (centre)
+%                                            - \raggedleft (aligne a droite)
+%    - alignement vertical, parametre #2 : - p (aligne en haut)
+%                                          - m (centre)
+%                                          - b (aligne en bas)
+%    - largeur, parametre #3 : longueur
+\newcolumntype{Z}[3]{>{#1\hspace{0pt}\arraybackslash}#2{#3}}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% Definitions des parametres de la page titre
+\TitreProjet{Stage été 2014}                         % Titre du projet
+\TitreRapport{Rapport}                       % Titre du rapport
+\Destinataire{Département de Génie Logiciel}         % Nom(s) du destinataire
+\NumeroEquipe{01}                                     % Numero de l'equipe
+\NomEquipe{Aristote Diasonama}                               % Nom de l'equipe
+\TableauMembres{%                                     % Tableau des membres de l'equipe
+   \hline        % matricule & nom & \\\hline
+   000\,000\,000  & Aristote Diasonama         & Génie Logiciel\\\hline        % matricule & nom & \\\hline
+}
+\DateRemise{03 09 2014}                           % Date de remis
+
+
+% Contenu de l'historique des versions
+\HistoriqueVersions{%                        % version & date & description \\\hline
+       &  24 aout 2013 & Création du document \\ \hline
+	VF   & 03 septembre 2014 & Rapport version finale \\ \hline
+%   1.3   & 14 janvier 2011 & reformatage de l'exemple, changements à l'organisation des figures\\\hline
+%   1.3.1   & 24 novembre 2011 & matricules à 9 chiffres, titre du rapport\\\hline
+}
+
+
+% Corps du document
+
+\begin{document}
+
+%   Chapitres
+\input{tex/introduction}
+
+\input{tex/bibliographie}
+
+%   Annexes
+%\appendix
+%\input{tex/liste_sig_acr}
+
+\end{document}
+% Fin du document
+
