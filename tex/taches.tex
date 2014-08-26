@@ -1,0 +1,42 @@
+% !TEX encoding = IsoLatin
+
+%
+% Chapitre "Environnement de Travail"
+%
+
+\chapter{Tâches éffectuées}
+\label{s:taches}
+Durant mon stage au sein de Wanted, j'ai eu à effectuer plusieurs tâches en relation avec ma position dans l'équipe middleware. Dans ce chapitre, je vais décrire trois tâches qui ont été pleines de défis et d'opportunités d'apprentissage:
+
+1. La mise en place d'un nouveau système de rapport pour Wanted et ses clients \ref{sec:systeme_rapport}.
+2. L'implémentation d'un module de sécurité pour une application interne, la configuration centralisée. \ref{sec:config_central}
+3. L'implémentation des nouvelles features pour la prochaine version de Wanted Analytics \ref{sec:new_features}.
+
+\section{Nouveau système de rapport}
+\label{sec:systeme_rapport}
+\subsection {Le problème}
+Wanted utilise un système de rapport pour analyser l'utilisation des ses produits par ses clients. Ce système permet d'obtenir les statistiques tel que le nombre de fois une application a été utilisée, qui l'ont utilisé, etc..
+Cependant le système qui était en place présentait beaucoup de lacunes, était difficile à maintenir et posait beaucoup des problèmes à l'équipe middleware chargée de concevoir et maintenir ce système.
+C'était donc dans cette optique, qu'il nous a été chargé, avec un second stagiaire, de concevoir et mettre en place un nouveau système de travail, beaucoup plus stable, facile à maintenir et surtout qui permettra une évolution rapide et la création facile de nouveaux rapports.
+\subsection{La solution}
+Après analyse du système existant et des requis présentés par les futurs utilisateurs du système de rapport, nous avons envisager plusieurs possibilités de solution. Parmi ces solutions, nous avons eu la possibilité de recréer un système de rapport à partir de zéro, nous avons considéré réutiliser des solutions propriétaires de système de rapport comme Pentaho, Birt par Actuate , Jasper Studio par JasperSoft, Crystal etc.. et nous avons aussi considérer les versions libres de Birt ansi que Jasper.
+Très vite, nous nous sommes rendus compte que reimplémenter le système de zéro ne serait pas une solution idéale du point de vue ressources puisque nous aurions essentiellement reconstruit un système qui faisait le même travail que la majorité des solutions existantes que nous avons découvert. Nous avons donc procédé à l'analyse en profondeur des systèmes existants. De ma part j'avais choisi d'analyser Birt, sa version tant commercial que libre. J'ai développé une petite preuve de concept de la solution que je proposais avec Birt.
+Après analyses et débats, nous avons au final choisi d'utiliser Jasper Studio et de l'adapter aux besoins de Wanted Technologies. Nous avons et reconstruits les anciens rapports  avec le nouveau système et avec l'aide des autres membres de l'équipe, nous l'avons déployé pour utilisation.
+ 
+\section{Module de sécurité pour la configuration centralisée}
+\label{sec:config_central}
+\subsection{Le problème}
+La configuration centralisée est l'application qui permet aux autres applications de Wanted d'obtenir des informations nécessaires pour leur bon fonctionnement. À chaque fois qu'une application est lancée, elle interroge la configuration centralisée pour obtenir les informations nécessaires pour par example se connecter à la base des données.
+Il fallait implementer un module de sécurité pour cette configuration centralisée. Ce module permettra d'identifier les clients (les autres applications de Wanted) sont autorisés à utiliser cette configuration centralisée. L'accès doit donc être autorisé aux clients identifiés et permis d'utiliser la configuration et il sera refusé aux autres qui n'ont pas cette autorisation.
+\subsection{La solution}
+Nous avons mis en place le module de sécurité pour la configuration centralisée. En effet, chaque client qui peut utiliser la configuration centralisée, doit au préalable être enregistré et avoir été autorisé à utiliser l'application.
+On peut via une interface web enregistrer un client via son nom et son adresse. Après via la même interface, on peut être en mesure d'autoriser le client enregistré à utiliser une configuration qui aura au préalable été créée.
+De même, on peut aussi annuler l'autorisation d'un client à utiliser une configuration donnée.
+
+
+\section{Implementation des features dans la nouvelle version de WantedAnalytics}
+\label{sec:new_features}
+
+Enfin, j'ai travaillé directement sur l'api de Wanted Analytics. J'ai développé 2 nouvelles features qui feront partie de la prochaine version, la version internationale de Wanted Analytics. 
+
+
