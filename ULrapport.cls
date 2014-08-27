@@ -74,7 +74,7 @@
 %------------------------------- declaration of options -------------------------------
 %--------------------------------------------------------------------------------------
 \DeclareOption{ULlof}{\setboolean{InsererListeDesFigures}{true}}
-\DeclareOption{ULlot}{\setboolean{InsererListeDesTableaux}{true}}
+\DeclareOption{ULlot}{\setboolean{InsererListeDesTableaux}{false}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 
 %--------------------------------------------------------------------------------------
