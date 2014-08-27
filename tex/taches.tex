@@ -4,7 +4,7 @@
 % Chapitre "Environnement de Travail"
 %
 
-\chapter{Tâches éffectuées}
+\chapter{Tâches effectuées}
 \label{s:taches}
 Durant mon stage au sein de Wanted, j'ai eu à effectuer plusieurs tâches en relation avec ma position dans l'équipe middleware. Dans ce chapitre, je vais décrire trois tâches qui ont été pleines de défis et d'opportunités d'apprentissage:
 
@@ -21,7 +21,7 @@ C'était donc dans cette optique, qu'il nous a été chargé, avec un second stagiai
 \subsection{La solution}
 Après analyse du système existant et des requis présentés par les futurs utilisateurs du système de rapport, nous avons envisager plusieurs possibilités de solution. Parmi ces solutions, nous avons eu la possibilité de recréer un système de rapport à partir de zéro, nous avons considéré réutiliser des solutions propriétaires de système de rapport comme Pentaho, Birt par Actuate , Jasper Studio par JasperSoft, Crystal etc.. et nous avons aussi considérer les versions libres de Birt ansi que Jasper.
 Très vite, nous nous sommes rendus compte que reimplémenter le système de zéro ne serait pas une solution idéale du point de vue ressources puisque nous aurions essentiellement reconstruit un système qui faisait le même travail que la majorité des solutions existantes que nous avons découvert. Nous avons donc procédé à l'analyse en profondeur des systèmes existants. De ma part j'avais choisi d'analyser Birt, sa version tant commercial que libre. J'ai développé une petite preuve de concept de la solution que je proposais avec Birt.
-Après analyses et débats, nous avons au final choisi d'utiliser Jasper Studio et de l'adapter aux besoins de Wanted Technologies. Nous avons et reconstruits les anciens rapports  avec le nouveau système et avec l'aide des autres membres de l'équipe, nous l'avons déployé pour utilisation.
+Après analyses et débats, nous avons au final choisi d'utiliser Jasper Studio et de l'adapter aux besoins de Wanted Technologies. Nous avons et reconstruits les anciens rapports  avec le nouveau système et avec l'aide des autres membres de l'équipe, nous l'avons déployé pour utilisation \ref{fig:capture_jasper}.
  
 \section{Module de sécurité pour la configuration centralisée}
 \label{sec:config_central}
@@ -31,7 +31,7 @@ Il fallait implementer un module de sécurité pour cette configuration centralisé
 \subsection{La solution}
 Nous avons mis en place le module de sécurité pour la configuration centralisée. En effet, chaque client qui peut utiliser la configuration centralisée, doit au préalable être enregistré et avoir été autorisé à utiliser l'application.
 On peut via une interface web enregistrer un client via son nom et son adresse. Après via la même interface, on peut être en mesure d'autoriser le client enregistré à utiliser une configuration qui aura au préalable été créée.
-De même, on peut aussi annuler l'autorisation d'un client à utiliser une configuration donnée.
+De même, on peut aussi annuler l'autorisation d'un client à utiliser une configuration donnée \ref{capture_config}.
 
 
 \section{Implementation des features dans la nouvelle version de WantedAnalytics}
