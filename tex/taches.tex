@@ -6,37 +6,41 @@
 
 \chapter{Tâches effectuées}
 \label{s:taches}
-Durant mon stage au sein de Wanted, j'ai eu à effectuer plusieurs tâches en relation avec ma position dans l'équipe middleware. Dans ce chapitre, je vais décrire trois tâches qui ont été pleines de défis et d'opportunités d'apprentissage:
+Durant mon stage au sein de Wanted, j'ai eu à effectuer plusieurs tâches en relation avec ma position dans l'équipe d'interface utilisateur. Dans ce chapitre, je vais décrire quatre de ces tâches qui ont toutes été pleines de défis et d'opportunités d'apprentissage:
+\begin{enumerate}
+ \item World Map Popup. \ref{sec:world_map}.
+ \item Wanted Analytics Connector: Icims Integration. \ref{sec:icims}
+ \item Alternate Location Highlights \ref{sec:alternate_location}
+ \item Bullhorn Integration \ref{sec:bullhorn}.
 
-1. La mise en place d'un nouveau système de rapport pour Wanted et ses clients \ref{sec:systeme_rapport}.
-2. L'implémentation d'un module de sécurité pour une application interne, la configuration centralisée. \ref{sec:config_central}
-3. L'implémentation des nouvelles features pour la prochaine version de Wanted Analytics \ref{sec:new_features}.
+\end{enumerate}
 
-\section{Nouveau système de rapport}
-\label{sec:systeme_rapport}
-\subsection {Le problème}
-Wanted utilise un système de rapport pour analyser l'utilisation des ses produits par ses clients. Ce système permet d'obtenir les statistiques tel que le nombre de fois une application a été utilisée, qui l'ont utilisé, etc..
-Cependant le système qui était en place présentait beaucoup de lacunes, était difficile à maintenir et posait beaucoup des problèmes à l'équipe middleware chargée de concevoir et maintenir ce système.
-C'était donc dans cette optique, qu'il nous a été chargé, avec un second stagiaire, de concevoir et mettre en place un nouveau système de travail, beaucoup plus stable, facile à maintenir et surtout qui permettra une évolution rapide et la création facile de nouveaux rapports.
+\section{World Map Popup}
+\label{sec:world_map}
+\subsection {Mise en contexte}
+La world map est une de nombreuses features que notre produit Wanted Analytics\texttrademark. Elle permet donc à nos clients d'avoir une vue d'ensemble du marché d'emploi dans les différents pays que nous supportons. Dans notre application Web, elle se présente comme une page avec une map du monde où tous les pays que nous supportons sont étiquetés du nombre d'offres d'emploi actuellement disponibles dans ces pays. \ref{fig:worldmap-before}
+\subsection{Demande du client}
+Le client voulait être en mesure d'avoir accès non seulement au nombre d'offres d'emploi ouvertes mais aussi à une estimation du nombre des candidats potentiels par pays pour une recherche donnée à travers la world map. Il voulait être en mesure de voir à travers la meme world map, pour chaque pays, les top 5 des aires urbaines où il y a plus d'offres d'emploi ou de candidats potentiels.
 \subsection{La solution}
-Après analyse du système existant et des requis présentés par les futurs utilisateurs du système de rapport, nous avons envisager plusieurs possibilités de solution. Parmi ces solutions, nous avons eu la possibilité de recréer un système de rapport à partir de zéro, nous avons considéré réutiliser des solutions propriétaires de système de rapport comme Pentaho, Birt par Actuate , Jasper Studio par JasperSoft, Crystal etc.. et nous avons aussi considérer les versions libres de Birt ansi que Jasper.
-Très vite, nous nous sommes rendus compte que reimplémenter le système de zéro ne serait pas une solution idéale du point de vue ressources puisque nous aurions essentiellement reconstruit un système qui faisait le même travail que la majorité des solutions existantes que nous avons découvert. Nous avons donc procédé à l'analyse en profondeur des systèmes existants. De ma part j'avais choisi d'analyser Birt, sa version tant commercial que libre. J'ai développé une petite preuve de concept de la solution que je proposais avec Birt.
-Après analyses et débats, nous avons au final choisi d'utiliser Jasper Studio et de l'adapter aux besoins de Wanted Technologies. Nous avons et reconstruits les anciens rapports  avec le nouveau système et avec l'aide des autres membres de l'équipe, nous l'avons déployé pour utilisation \ref{fig:capture_jasper}.
+La réponse à cette demande a été apportée sous forme d'une release nommée World Map Popup. Deux équipes ont pris part au développement de cette feature. L'équipe Middleware s'est chargé de la partie backend qui consistait à exposer les données via des services REST.  Du coté UI, la solution était d'ajouter une nouvelle vue pour afficher le nombre des candidats potentiels par pays. Le client sera donc présenté un sélecteur de vue qui lui permettra de naviguer d'une vue à l'autre au besoin. 
+Concernant la demande sur le top 5 des aires urbaines, nous avons ajouté un popup qui affiche le top 5 des aires urbaines comme demandé par le client. En passant sa souris sur un pays voulu, le client se vera affiché ce popup avec toutes les info dont il a besoin. \ref{fig:worldmap-after}
  
-\section{Module de sécurité pour la configuration centralisée}
-\label{sec:config_central}
-\subsection{Le problème}
-La configuration centralisée est l'application qui permet aux autres applications de Wanted d'obtenir des informations nécessaires pour leur bon fonctionnement. À chaque fois qu'une application est lancée, elle interroge la configuration centralisée pour obtenir les informations nécessaires pour par example se connecter à la base des données.
-Il fallait implementer un module de sécurité pour cette configuration centralisée. Ce module permettra d'identifier les clients (les autres applications de Wanted) sont autorisés à utiliser cette configuration centralisée. L'accès doit donc être autorisé aux clients identifiés et permis d'utiliser la configuration et il sera refusé aux autres qui n'ont pas cette autorisation.
+\section{Icims Integration}
+\label{sec:icims}
+\subsection{Mise en contexte}
+Un autre produit de Wanted est le Wanted Analytics Connector (WAC). Le WAC est une extension de navigateur web. Cette extension qui est disponible sur Google Chrome, Mozilla Firefox et Internet Explorer, permet au client qui l'utilise d'obtenir des informations sur des offres d'emploi qu'il visite quand ces derniers sont publiées sur des sites reconnus par Wanted. Pour ce faire le WAC analyse la structure de la page visitée pour retrouver des mots clés sur l'offre d'emploi qui seront ensuite envoyés au serveur de Wanted Analytics pour générer l'analyse de cette offre.
+\subsection{Demande du client}
+Le client voulait donc ajouter le support d'icims au WAC. Icims est une plateforme web permettant aux recruteurs de gérer et publier des offres d'emplois. La solution devait donc permettre aux clients d'utiliser le WAC sur Icims.
 \subsection{La solution}
-Nous avons mis en place le module de sécurité pour la configuration centralisée. En effet, chaque client qui peut utiliser la configuration centralisée, doit au préalable être enregistré et avoir été autorisé à utiliser l'application.
-On peut via une interface web enregistrer un client via son nom et son adresse. Après via la même interface, on peut être en mesure d'autoriser le client enregistré à utiliser une configuration qui aura au préalable été créée.
-De même, on peut aussi annuler l'autorisation d'un client à utiliser une configuration donnée \ref{capture_config}.
+La solution pour ce problème a été direct. Nous avons analysé la structure de la plateforme web d'icims et nous avons été en mesure d'extraire les informations nécessaires pour ajouter le support du WAC.
 
+\section{Alternate Location Highlights}
+\label{sec:alternate_location}
+Pour cette tache, il s'agissait d'apporter des modifications graphiques dans notre produit Web Wanted Analytics. Ces modifications devraient permettre de mettre en relief les locations d'intérêts particuliers  pour un utilisateur parmi plusieurs locations potentielles.
+\section{Bullhorn Integration}
+\label{sec:bullhorn}
 
-\section{Implementation des features dans la nouvelle version de WantedAnalytics}
-\label{sec:new_features}
+Enfin, j'ai travaillé sur l'intégration de notre application sur un autre site de stratégie de recrutement. Comme dans le cas de Icims \ref{sec:icims}, il fallait aussi pour chaque offre d'emploi, afficher l'analyse fournie par le WAC. Sauf que pour ce cas, le WAC ne devrait pas être en forme d'un plugin mais plutôt intégré comme un iframe sur la page de l'offre d'emploi. Nous avons aussi apporté cette solution telle que présentée sur la figure \ref{fig:bullhorn}
 
-Enfin, j'ai travaillé directement sur l'api de Wanted Analytics. J'ai développé 2 nouvelles features qui feront partie de la nouvelle version internationale de Wanted Analytics qui sera disponible dans les prochains mois. 
 
 
